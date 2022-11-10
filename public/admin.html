@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #ffe9b1;
+      }
+
+      .page {
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        width: 335px;
+        height: 600px;
+        background-color: #7743db;
+        border-radius: 20px;
+        border: 3px solid;
+        border-color: #3b3486;
+      }
+      #message {
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 50px;
+        height: 300px;
+        border-radius: 5px;
+      }
+      #send {
+        margin: 20px;
+        margin-left: 80px;
+        padding: 50px;
+        border-radius: 5px;
+        border: 1px solid;
+        border-color: #3b3486;
+        background-color: #8d8daa;
+      }
+    </style>
+    <div class="center">
+      <div class="page">
+        <textarea name="" id="message"></textarea>
+        <button id="send">Update board</button>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      document.getElementById("send").addEventListener("click", () => {
+        let txt = document.getElementById("message").value;
+        socket.emit("message", txt); // sends data to server
+      });
+    </script>
+  </body>
+</html>

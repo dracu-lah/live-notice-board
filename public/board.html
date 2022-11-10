@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notice board</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #ffe9b1;
+      }
+
+      .main {
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        width: 335px;
+        height: 600px;
+        background-color: #7743db;
+        border-radius: 20px;
+        border: 3px solid;
+        border-color: #3b3486;
+      }
+      .box {
+        background-color: white;
+        height: 560px;
+        width: 300px;
+        margin-top: 10px;
+        margin-left: 8px;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      p{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+      }
+    </style>
+    <div class="main">
+      <div class="box">
+        <p class="noticeText" id="noticeText" aria-placeholder="">
+          Text will be shown here!
+        </p>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on("board_content", (msg) => {
+        document.getElementById("noticeText").innerHTML = msg;
+      });
+    </script>
+  </body>
+</html>
